@@ -1,2 +1,2 @@
-# Yep
-assist
+# Slap battles script
+slap battles script 
