@@ -1,7 +1,0 @@
--- Danh sách thành viên Premium
-local allowedPlayers = {
-    "freeslapfarm", -- Thay bằng tên người chơi
-    "botcaomod",
-    "skibidi",
-    -- Thêm các tên khác vào danh sách này
-}

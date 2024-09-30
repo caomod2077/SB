@@ -1,0 +1,257 @@
+--Script free you can use to make your script
+--thông báo
+local StarterGui = game:GetService("StarterGui")
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Loading script",
+    Text = "Done thx use my script",
+    Duration = 3
+})
+
+StarterGui:SetCore("SendNotification", {
+    Title = "bypass wait",
+    Text = "ok",
+    Duration = 5
+})
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Anti",
+    Text = "AntiMod,Anti brazil,Anti cube of death check..... ok",
+    Duration = 5
+})
+
+StarterGui:SetCore("SendNotification", {
+    Title = "Script make by Cáo Mod",
+    Text = "Subscribe Cáo Mod",
+    Duration = 5
+})
+
+--make gui
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(255, 235, 59)
+Frame.Position = UDim2.new(0.36, 0, 0.3, 0)
+Frame.Size = UDim2.new(0, 430, 0, 300)
+
+local buttonSize = UDim2.new(0, 70, 0, 50)
+local spacingX = 29
+local spacingY = 19
+--tên button
+local buttons = {
+    {"Win Retro", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.FinishDoor_Retro.Part.CFrame end},
+    {"Safe arena(all player)", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(18829.7109, 3042.24097, -228.608887, 0.14886488, 0, -0.988857627, -0, 1.00000012, -0, 0.988857627, 0, 0.14886488) end},
+    {"Hunter Room", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.BountyHunterRoom.Union.CFrame * CFrame.new(0, 5, 0) end},
+    {"Brazil", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-726.899719, 309.469391, -0.314494729) end},
+    {"Island Slapple", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0, 3.25, 0) end},
+    {"Plate", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame end},
+    {"Tournament", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0, 10, 0) end},
+    {"Cannon Island", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.CannonIsland.Cannon.Base.CFrame * CFrame.new(0, 0, 35) end},
+    {"Cube Of Death", function() if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].Part.CFrame * CFrame.new(0, 5, 0) end end},
+    {"Moai Island", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5) end},
+    {"Arena", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0, -5, 0) end},
+    {"Island 1", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-211.210846, -5.27827597, 4.13719559) end},
+    {"Island 2", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741) end},
+    {"Island 3", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378) end},
+}
+--tạo button
+for i, buttonInfo in ipairs(buttons) do
+    local TextButton = Instance.new("TextButton")
+    TextButton.Parent = Frame
+    TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    TextButton.Size = buttonSize
+    TextButton.Font = Enum.Font.Cartoon
+    TextButton.Text = buttonInfo[1]
+    TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TextButton.TextSize = 10
+--hàng
+    local row = math.floor((i - 1) / 6)
+    local col = (i - 1) % 6
+
+    TextButton.Position = UDim2.new(0.1 * col + (spacingX * col / Frame.Size.X.Offset), 0, 0.1 * row + (spacingY * row / Frame.Size.Y.Offset), 0)
+--recall cho tất cả button
+    TextButton.MouseButton1Click:Connect(function()
+        buttonInfo[2]()
+        wait(0.2)
+        local args = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Recall,
+            [2] = Vector3.new(2.0009660720825195, -5.173244476318359, -69.03010559082031)
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Recall"):InvokeServer(unpack(args))
+    end)
+end
+--phần tp đến người chs
+--make phần tp
+local playerNameBox = Instance.new("TextBox")
+playerNameBox.Parent = Frame
+playerNameBox.Size = UDim2.new(0, 200, 0, 50)
+playerNameBox.Position = UDim2.new(0, 10, 0, 210)
+playerNameBox.PlaceholderText = "Nhập tên người chơi"
+playerNameBox.Font = Enum.Font.Cartoon
+playerNameBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+playerNameBox.TextSize = 14
+playerNameBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+
+local teleportButton = Instance.new("TextButton")
+teleportButton.Parent = Frame
+teleportButton.Size = UDim2.new(0, 100, 0, 50)
+teleportButton.Position = UDim2.new(0, 220, 0, 210)
+teleportButton.Text = "Teleport"
+teleportButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+teleportButton.Font = Enum.Font.Cartoon
+teleportButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+teleportButton.TextSize = 14
+
+teleportButton.MouseButton1Click:Connect(function()
+    local playerName = playerNameBox.Text
+    local targetPlayer
+
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if string.sub(player.Name, 1, #playerName) == playerName then
+            targetPlayer = player
+            break
+        end
+    end
+
+    if targetPlayer then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 3, 0)
+    end
+end)
+
+--duy chuyển ScreenGui dc 
+Frame.Active = true
+Frame.Draggable = true
+
+--Chữ Rainbow 
+local function rainbowTextInGui(gui)
+    local hue = 0
+    while true do
+        hue = hue + 1
+        if hue > 360 then
+            hue = 0
+        end
+        local color = Color3.fromHSV(hue / 360, 1, 1) 
+        for _, child in ipairs(gui:GetDescendants()) do
+            if child:IsA("TextLabel") or child:IsA("TextButton") or child:IsA("TextBox") then
+                child.TextColor3 = color
+            end
+        end
+        wait(0.03) 
+    end
+end
+
+spawn(function() rainbowTextInGui(ScreenGui) end)
+
+-- nút bật/tắt
+local toggleScreenGui = Instance.new("ScreenGui")
+toggleScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+toggleScreenGui.Name = "ToggleGui"
+toggleScreenGui.ResetOnSpawn = false
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Parent = toggleScreenGui
+toggleButton.Position = UDim2.new(0.85, 0, 0.85, 0)  -- Vị trí góc phải phía dưới
+toggleButton.Size = UDim2.new(0, 50, 0, 50)  -- Kích thước nhỏ hơn (50x50)
+toggleButton.Text = "Toggle"
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+toggleButton.Font = Enum.Font.Cartoon
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.TextSize = 14
+
+toggleButton.Active = true
+toggleButton.Draggable = true  -- Kéo thả được
+
+if ScreenGui == nil then
+    ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+    ScreenGui.ResetOnSpawn = false
+    ScreenGui.Enabled = true
+end
+
+local isScreenGuiVisible = true
+toggleButton.MouseButton1Click:Connect(function()
+    isScreenGuiVisible = not isScreenGuiVisible
+    ScreenGui.Enabled = isScreenGuiVisible
+end)
+
+
+--hiện map retro
+if game.ReplicatedStorage.Assets:FindFirstChild("Retro") then
+    game.ReplicatedStorage.Assets.Retro.Parent = game.Workspace
+end
+--Anti, bypass 
+--bypass
+local Namecall
+Namecall = hookmetamethod(game, "__namecall", function(self, ...)
+   if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+       return 
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+       return 
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+       return 
+   end
+   return Namecall(self, ...)
+end)
+
+--antiMod
+spawn(function()
+    _G.AntiMods = true
+    while _G.AntiMods do
+        for i, v in pairs(game.Players:GetChildren()) do
+            if v:GetRankInGroup(9950771) >= 2 then
+                game.Players.LocalPlayer:Kick("High Rank Player Detected." .. " [ " .. v.Name .. " ]")
+                break
+            end
+        end
+        wait(1)
+    end
+end)
+
+--Anti brazil
+spawn(function()
+    _G.AntiBrazil = true
+    while _G.AntiBrazil do
+        for _, v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
+            if v.CanTouch == true then
+                v.CanTouch = false
+            end
+        end
+        wait(1)
+    end
+end)
+
+--anti cube
+spawn(function()
+    while true do
+        if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) and game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"]:FindFirstChild("Part") then
+            game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
+            game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].Part.CanTouch = false
+        else
+            if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) and game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"]:FindFirstChild("Part") then
+                game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = true
+                game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].Part.CanTouch = true
+            end
+        end
+        wait(1)
+    end
+end)
+
+wait(60)
+
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCore("SendNotification", {
+    Title = "skibidi",
+    Text = "skibidi",
+    Duration = 10
+})
+
+wait(120)
+
+StarterGui:SetCore("SendNotification", {
+    Title = "skibidi",
+    Text = "skibidi",
+    Duration = 10
+})
