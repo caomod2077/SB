@@ -8,6 +8,12 @@ StarterGui:SetCore("SendNotification", {
     Duration = 7
 })
 
+StarterGui:SetCore("SendNotification", {
+    Title = "script auto update",
+    Text = "skibidi",
+    Duration = 5
+})
+
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MyScreenGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -65,7 +71,7 @@ local function toggleAction()
         toggleButton.BackgroundColor3 = Color3.new(0, 0, 0)
         toggleButton.TextColor3 = Color3.new(1, 1, 1)
 
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(18829.7109, 3042.24097, -228.608887, 0.14886488, 0, -0.988857627, -0, 1.00000012, -0, 0.988857627, 0, 0.14886488)
 
         task.spawn(function()
             while isToggled do
