@@ -128,3 +128,32 @@ task.spawn(rainbowText, titleBar)
 task.spawn(rainbowText, toggleButton)
 task.spawn(rainbowText, getGloveButton)
 task.spawn(rainbowText, viewArenaButton)
+
+
+--Anti, bypass 
+--bypass
+local Namecall
+Namecall = hookmetamethod(game, "__namecall", function(self, ...)
+   if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+       return 
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+       return 
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+       return 
+   end
+   return Namecall(self, ...)
+end)
+
+--antiMod
+spawn(function()
+    _G.AntiMods = true
+    while _G.AntiMods do
+        for i, v in pairs(game.Players:GetChildren()) do
+            if v:GetRankInGroup(9950771) >= 2 then
+                game.Players.LocalPlayer:Kick("High Rank Player Detected." .. " [ " .. v.Name .. " ]")
+                break
+            end
+        end
+        wait(1)
+    end
+end)
