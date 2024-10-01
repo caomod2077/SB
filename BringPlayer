@@ -9,22 +9,12 @@ StarterGui:SetCore("SendNotification", {
 })
 
 StarterGui:SetCore("SendNotification", {
-    Title = "bypass wait",
-    Text = "ok",
-    Duration = 5
-})
-
-StarterGui:SetCore("SendNotification", {
-    Title = "Anti",
-    Text = "AntiMod,Anti brazil,Anti cube of death check..... ok",
-    Duration = 5
-})
-
-StarterGui:SetCore("SendNotification", {
     Title = "Script make by Cáo Mod",
     Text = "Subscribe Cáo Mod",
     Duration = 5
 })
+
+wait(3)
 
 --make gui
 local ScreenGui = Instance.new("ScreenGui")
@@ -162,7 +152,7 @@ toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.TextSize = 14
 
 toggleButton.Active = true
-toggleButton.Draggable = true  -- Kéo thả được
+toggleButton.Draggable = true 
 
 if ScreenGui == nil then
     ScreenGui = Instance.new("ScreenGui")
