@@ -1,0 +1,46 @@
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Loading",
+    Text = "Wait", 
+    Duration = 5, 
+})
+
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "script make by Cáo Mod",
+    Text = "thx use my script:) ", 
+    Duration = 5, 
+})
+
+local TeleportService = game:GetService("TeleportService")
+local placeId = 74169485398268
+
+local function teleportToGame()
+    local player = game.Players.LocalPlayer
+    
+    if game.PlaceId == placeId then
+        return
+    end
+    
+    if player then
+        TeleportService:Teleport(placeId, player)
+    end
+end
+
+teleportToGame()
+
+wait(1)
+
+fireclickdetector(workspace.Orb.ClickDetector)
+
+wait(1)
+
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+    Title = "Done",
+    Text = "now you have bind", 
+    Duration = 5, 
+})
