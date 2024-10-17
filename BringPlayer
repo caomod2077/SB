@@ -1,5 +1,17 @@
 --Script free you can use to make your script
 --thông báo
+
+if game.PlaceId ~= 6403373529 then
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "game not supported",
+        Text = "Go Slap Battles",
+        Duration = 7
+    })
+    return
+end
+
 local StarterGui = game:GetService("StarterGui")
 
 StarterGui:SetCore("SendNotification", {
