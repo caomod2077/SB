@@ -1,23 +1,4 @@
 --Script free you can use to make your script
---check game
-if game.PlaceId ~= 6403373529 then
-    local StarterGui = game:GetService("StarterGui")
-    local TeleportService = game:GetService("TeleportService")
-    local slapBattlesId = 6403373529
-
-    StarterGui:SetCore("SendNotification", {
-        Title = "game not supported",
-        Text = "Go Slap Battles",
-        Duration = 7,
-        Button1 = "ok(tp to game)"
-    })
-    
-    StarterGui.CoreGuiChangedSignal:Connect(function()
-        TeleportService:Teleport(slapBattlesId, game.Players.LocalPlayer)
-    end)
-
-    return
-end
 
 --thông báo
 local StarterGui = game:GetService("StarterGui")
