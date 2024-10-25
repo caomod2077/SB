@@ -1,0 +1,306 @@
+if game.PlaceId ~= 6403373529 then
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "game not supported",
+        Text = "Go Slap Battles",
+        Duration = 7
+    })
+    return
+end
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Script make by Cáo Mod",
+    Text = "tutorial in yt Cáo Mod",
+    Duration = 5,
+    Button1 = "OK",
+    Callback = function(buttonClicked)
+        if buttonClicked == "OK" then
+            setclipboard("") 
+        end
+    end
+})
+
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "Bringscriptrecall"
+screenGui.ResetOnSpawn = false
+screenGui.Enabled = true
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.85, 0, 0.65, 0)
+frame.Position = UDim2.new(0.075, 0, 0.175, 0)
+frame.BackgroundTransparency = 1
+frame.Active = true
+frame.Draggable = true
+frame.Parent = screenGui
+
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 15)
+frameCorner.Parent = frame
+
+local titleFrame = Instance.new("Frame")
+titleFrame.Size = UDim2.new(0.85, 0, 0.1, 0)
+titleFrame.Position = UDim2.new(0.075, 0, 0, 0)
+titleFrame.BackgroundColor3 = Color3.fromRGB(255, 235, 59)
+titleFrame.Parent = frame
+
+local titleFrameCorner = Instance.new("UICorner")
+titleFrameCorner.CornerRadius = UDim.new(0, 15)
+titleFrameCorner.Parent = titleFrame
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 1, 0)
+titleLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Text = "Bring Player recall by Cáo Mod"
+titleLabel.TextScaled = true
+titleLabel.Parent = titleFrame
+
+local titleLabelCorner = Instance.new("UICorner")
+titleLabelCorner.CornerRadius = UDim.new(0, 15)
+titleLabelCorner.Parent = titleLabel
+
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0.1, 0, 1, 0) 
+closeButton.Position = UDim2.new(0.9, 0, 0, 0)
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.TextScaled = true
+closeButton.BackgroundTransparency = 1
+closeButton.Parent = titleFrame
+
+closeButton.MouseButton1Click:Connect(function()
+    if screenGui then screenGui:Destroy() end
+    if toggleScreenGui then toggleScreenGui:Destroy() end
+end)
+
+spawn(function()
+    while true do
+        for hue = 0, 1, 0.01 do
+            titleLabel.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.1)  -- Adjust for smoothness and speed
+        end
+    end
+end)
+
+local frame2 = Instance.new("Frame")
+frame2.Size = UDim2.new(0.7, 0, 0.8, 0)
+frame2.Position = UDim2.new(0.05, 0, 0.12, 0)
+frame2.BackgroundColor3 = Color3.fromRGB(255, 235, 59)
+frame2.Parent = frame
+
+local frame2Corner = Instance.new("UICorner")
+frame2Corner.CornerRadius = UDim.new(0, 15)
+frame2Corner.Parent = frame2
+
+local frame3 = Instance.new("Frame")
+frame3.Size = UDim2.new(0.22, 0, 0.8, 0)
+frame3.Position = UDim2.new(0.76, 0, 0.12, 0)
+frame3.BackgroundColor3 = Color3.fromRGB(255, 235, 59)
+frame3.Parent = frame
+
+local frame3Corner = Instance.new("UICorner")
+frame3Corner.CornerRadius = UDim.new(0, 15)
+frame3Corner.Parent = frame3
+
+local textBox = Instance.new("TextBox")
+textBox.Size = UDim2.new(0.9, 0, 0.4, 0)
+textBox.Position = UDim2.new(0.05, 0, 0.1, 0)
+textBox.Text = "Name player"
+textBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+textBox.Parent = frame3
+
+local textBoxCorner = Instance.new("UICorner")
+textBoxCorner.CornerRadius = UDim.new(0, 10)
+textBoxCorner.Parent = textBox
+
+spawn(function()
+    while true do
+        for hue = 0, 1, 0.01 do
+            textBox.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.1)
+        end
+    end
+end)
+
+local teleportButton = Instance.new("TextButton")
+teleportButton.Size = UDim2.new(0.9, 0, 0.3, 0)
+teleportButton.Position = UDim2.new(0.05, 0, 0.6, 0)
+teleportButton.Text = "Teleport"
+teleportButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+teleportButton.Parent = frame3
+
+local teleportButtonCorner = Instance.new("UICorner")
+teleportButtonCorner.CornerRadius = UDim.new(0, 10)
+teleportButtonCorner.Parent = teleportButton
+
+spawn(function()
+    while true do
+        for hue = 0, 1, 0.01 do
+            teleportButton.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.1)
+        end
+    end
+end)
+
+teleportButton.MouseButton1Click:Connect(function()
+    local targetName = textBox.Text:lower()
+    local targetPlayer = nil
+
+    for _, player in pairs(game.Players:GetPlayers()) do
+        if player.Name:lower():sub(1, #targetName) == targetName then
+            targetPlayer = player
+            break
+        end
+    end
+
+    if targetPlayer then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame
+    end
+end)
+
+local buttons = {
+    {"Arena", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Origo.CFrame * CFrame.new(0, -5, 0) end},
+    {"Safe Arena (All Player)", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(18829.7109, 3042.24097, -228.608887, 0.14886488, 0, -0.988857627, -0, 1.00000012, -0, 0.988857627, 0, 0.14886488) end},
+    {"Tournament", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Battlearena.Arena.CFrame * CFrame.new(0, 10, 0) end},
+    {"Hunter Room", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.BountyHunterRoom.Union.CFrame * CFrame.new(0, 5, 0) end},
+    {"Cube Of Death", function() if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) then game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].Part.CFrame * CFrame.new(0, 5, 0) end end},
+    {"Brazil", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-726.899719, 309.469391, -0.314494729) end},
+    {"Win Retro", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.FinishDoor_Retro.Part.CFrame end},
+    {"Plate", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Arena.Plate.CFrame end},
+    {"Island 1", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-211.210846, -5.27827597, 4.13719559) end},
+    {"Island 2", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8.17191315, -5.14452887, -205.249741) end},
+    {"Island 3", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-6.66747713, -5.06731462, 213.575378) end},
+    {"Moai Island", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(215, -15.5, 0.5) end},
+    {"Cannon Island", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Arena.CannonIsland.Cannon.Base.CFrame * CFrame.new(0, 0, 35) end},
+    {"Island Slapple", function() game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.workspace.Arena.island5.Union.CFrame * CFrame.new(0, 3.25, 0) end},
+}
+
+for i, buttonData in ipairs(buttons) do
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0.4, 0, 0.1, 0)
+    button.Position = UDim2.new(0.05 + (i - 1) % 2 * 0.45, 0, math.floor((i - 1) / 2) * 0.12 + 0.05, 0)
+    button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    button.Text = buttonData[1]
+    button.TextScaled = true
+    button.Parent = frame2
+
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.CornerRadius = UDim.new(0, 10)
+    buttonCorner.Parent = button
+
+    spawn(function()
+        while true do
+            for hue = 0, 1, 0.01 do
+                button.TextColor3 = Color3.fromHSV(hue, 1, 1)
+                wait(0.1)  -- Adjust for smoothness and speed
+            end
+        end
+    end)
+
+    button.MouseButton1Click:Connect(function()
+        buttonData[2]()
+        wait(0.2)
+        local args = {
+            [1] = game:GetService("Players").LocalPlayer.Character.Recall,
+            [2] = Vector3.new(2.0009660720825195, -5.173244476318359, -69.03010559082031)
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("Recall"):InvokeServer(unpack(args))
+    end)
+end
+
+--on/off
+local toggleScreenGui = Instance.new("ScreenGui")
+toggleScreenGui.Name = "On/Off"
+toggleScreenGui.ResetOnSpawn = false
+frame.Draggable = true
+frame.Parent = screenGui
+toggleScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local toggleButton = Instance.new("TextButton")
+toggleButton.Size = UDim2.new(0.1, 0, 0.1, 0)
+toggleButton.Position = UDim2.new(0, 10, 0, 10)
+toggleButton.Text = "Ui"
+toggleButton.TextScaled = true
+toggleButton.BackgroundColor3 = Color3.fromRGB(255, 235, 59)
+toggleButton.Parent = toggleScreenGui
+
+local toggleButtonCorner = Instance.new("UICorner")
+toggleButtonCorner.CornerRadius = UDim.new(0, 10)
+toggleButtonCorner.Parent = toggleButton
+
+spawn(function()
+    while true do
+        for hue = 0, 1, 0.01 do
+            toggleButton.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.1)
+        end
+    end
+end)
+
+toggleButton.MouseButton1Click:Connect(function()
+    screenGui.Enabled = not screenGui.Enabled
+end)
+
+-- retro map
+if game.ReplicatedStorage.Assets:FindFirstChild("Retro") then
+    game.ReplicatedStorage.Assets.Retro.Parent = game.Workspace
+end
+
+-- Anti, bypass 
+-- bypass
+local Namecall
+Namecall = hookmetamethod(game, "__namecall", function(self, ...)
+    if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+        return 
+    elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+        return 
+    elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+        return 
+    end
+    return Namecall(self, ...)
+end)
+
+-- antiMod
+spawn(function()
+    _G.AntiMods = true
+    while _G.AntiMods do
+        for i, v in pairs(game.Players:GetChildren()) do
+            if v:GetRankInGroup(9950771) >= 2 then
+                game.Players.LocalPlayer:Kick("High Rank Player Detected." .. " [ " .. v.Name .. " ]")
+                break
+            end
+        end
+        wait(1)
+    end
+end)
+
+-- Anti brazil
+spawn(function()
+    _G.AntiBrazil = true
+    while _G.AntiBrazil do
+        for _, v in pairs(game.Workspace.Lobby.brazil:GetChildren()) do
+            if v.CanTouch == true then
+                v.CanTouch = false
+            end
+        end
+        wait(1)
+    end
+end)
+
+-- anti cube
+spawn(function()
+    while true do
+        if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) and game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"]:FindFirstChild("Part") then
+            game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = false
+            game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].Part.CanTouch = false
+        else
+            if game.Workspace:FindFirstChild("the cube of death(i heard it kills)", 1) and game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"]:FindFirstChild("Part") then
+                game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].CanTouch = true
+                game.Workspace.Arena.CubeOfDeathArea["the cube of death(i heard it kills)"].Part.CanTouch = true
+            end
+        end
+        wait(1)
+    end
+end)
