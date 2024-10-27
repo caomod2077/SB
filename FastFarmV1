@@ -1,13 +1,17 @@
+
+
+
+
 coroutine.wrap(function()
-    for i = 1, 500 do
+    for i = 1, 1000 do
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/test-public/refs/heads/main/TestInstant"))()
     end
 end)()
 
 game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "Wait 7 sec",
+    Title = "Wait 10 sec",
     Text = "like and subscribe for Cáo Mod :D",
-    Duration = 7,
+    Duration = 10,
     Button1 = "OK",
     Callback = function(buttonClicked)
         if buttonClicked == "OK" then
@@ -16,7 +20,7 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
     end
 })
 
-wait(7)
+wait(10)
 
 
 
@@ -41,7 +45,7 @@ wait(1,5)
 
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
 
-wait(10)
+wait(15)
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
