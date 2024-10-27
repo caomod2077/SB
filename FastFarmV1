@@ -1,5 +1,5 @@
 --Auto Slap
-for i = 1, 1000 do
+for i = 1, 500 do
 loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/test-public/refs/heads/main/TestInstant"))()
 end
 
