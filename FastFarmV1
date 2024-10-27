@@ -25,6 +25,26 @@ spawn(function()
     end
 end)
 
+
+
+local requiredSlaps = 11500
+local player = game.Players.LocalPlayer
+local slaps = player.leaderstats.Slaps.Value
+
+if slaps < requiredSlaps then
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "You don't have enough 11.5k slaps",
+        Text = "Please reach 11.5k slaps to use the script",
+        Duration = 5,
+        Button1 = "OK",
+        Callback = function(buttonClicked)
+            if buttonClicked == "OK" then
+                setclipboard("") 
+            end
+        end
+    })
+else
+
 --farm
 coroutine.wrap(function()
     for i = 1, 10000 do
