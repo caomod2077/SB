@@ -4,7 +4,19 @@ coroutine.wrap(function()
     end
 end)()
 
-wait(5)
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Wait 7 sec",
+    Text = "like and subscribe for Cáo Mod :D",
+    Duration = 7,
+    Button1 = "OK",
+    Callback = function(buttonClicked)
+        if buttonClicked == "OK" then
+            setclipboard("") 
+        end
+    end
+})
+
+wait(7)
 
 
 
@@ -28,6 +40,8 @@ game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Lobby.Tel
 wait(1,5)
 
 game:GetService("ReplicatedStorage").Duplicate:FireServer()
+
+wait(10)
 
 if not game:IsLoaded() then
     game.Loaded:Wait()
