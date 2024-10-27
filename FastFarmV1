@@ -25,18 +25,7 @@ spawn(function()
     end
 end)
 
-if game.PlaceId ~= 6403373529 then
-    local StarterGui = game:GetService("StarterGui")
-
-    StarterGui:SetCore("SendNotification", {
-        Title = "game not supported",
-        Text = "Go Slap Battles",
-        Duration = 7
-    })
-    return
-end
-
-
+--check
 local requiredSlaps = 11500
 local player = game.Players.LocalPlayer
 local slaps = player.leaderstats.Slaps.Value
