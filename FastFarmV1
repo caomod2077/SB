@@ -25,6 +25,16 @@ spawn(function()
     end
 end)
 
+if game.PlaceId ~= 6403373529 then
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "game not supported",
+        Text = "Go Slap Battles",
+        Duration = 7
+    })
+    return
+end
 
 
 local requiredSlaps = 11500
@@ -33,9 +43,9 @@ local slaps = player.leaderstats.Slaps.Value
 
 if slaps < requiredSlaps then
     game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "You don't have enough 11.5k slaps",
+        Title = "You don't have 11.5k slaps",
         Text = "Please reach 11.5k slaps to use the script",
-        Duration = 5,
+        Duration = 10,
         Button1 = "OK",
         Callback = function(buttonClicked)
             if buttonClicked == "OK" then
