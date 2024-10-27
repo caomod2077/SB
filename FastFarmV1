@@ -1,3 +1,15 @@
+-- bypass
+local Namecall
+Namecall = hookmetamethod(game, "__namecall", function(self, ...)
+    if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+        return 
+    elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+        return 
+    elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+        return 
+    end
+    return Namecall(self, ...)
+end)
 
 -- antiMod
 spawn(function()
@@ -13,24 +25,50 @@ spawn(function()
     end
 end)
 
+if game.PlaceId ~= 6403373529 then
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "game not supported",
+        Text = "Go Slap Battles",
+        Duration = 7
+    })
+    return
+end
+
+
 --check
+if game.PlaceId ~= 6403373529 then
+    local StarterGui = game:GetService("StarterGui")
+
+    StarterGui:SetCore("SendNotification", {
+        Title = "Game not supported",
+        Text = "Go to Slap Battles",
+        Duration = 7
+    })
+    return
+end
+
 local requiredSlaps = 11500
 local player = game.Players.LocalPlayer
-local slaps = player.leaderstats.Slaps.Value
+local StarterGui = game:GetService("StarterGui")
 
-if slaps < requiredSlaps then
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "You don't have 11.5k slaps",
-        Text = "Please reach 11.5k slaps to use the script",
-        Duration = 10,
-        Button1 = "OK",
-        Callback = function(buttonClicked)
-            if buttonClicked == "OK" then
-                setclipboard("") 
+if player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Slaps") then
+    local slaps = player.leaderstats.Slaps.Value
+
+    if slaps < requiredSlaps then
+        StarterGui:SetCore("SendNotification", {
+            Title = "You don't have 11.5k slaps",
+            Text = "Please reach 11.5k slaps to use the script",
+            Duration = 10,
+            Button1 = "OK",
+            Callback = function(buttonClicked)
+                if buttonClicked == "OK" then
+                    setclipboard("") 
+                end
             end
-        end
-    })
-else
+        })
+    else
 
 --farm
 coroutine.wrap(function()
