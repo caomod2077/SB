@@ -1,0 +1,56 @@
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "FE Radio"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.ResetOnSpawn = false
+
+local mainFrame = Instance.new("Frame")
+mainFrame.Size = UDim2.new(0.6, 0, 0.3, 0)
+mainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+mainFrame.BorderSizePixel = 0
+mainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Text = "FE Radio Make by Cáo Mod"
+titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextScaled = true
+titleLabel.Font = Enum.Font.SourceSansBold
+titleLabel.Parent = mainFrame
+
+local soundIdBox = Instance.new("TextBox")
+soundIdBox.PlaceholderText = "Enter Sound/Music ID"
+soundIdBox.Size = UDim2.new(0.9, 0, 0.3, 0)
+soundIdBox.Position = UDim2.new(0.05, 0, 0.4, 0)
+soundIdBox.Text = ""
+soundIdBox.ClearTextOnFocus = false
+soundIdBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+soundIdBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+soundIdBox.Font = Enum.Font.SourceSans
+soundIdBox.TextScaled = true
+soundIdBox.Parent = mainFrame
+
+local playButton = Instance.new("TextButton")
+playButton.Text = "Play"
+playButton.Size = UDim2.new(0.9, 0, 0.25, 0)
+playButton.Position = UDim2.new(0.05, 0, 0.75, 0)
+playButton.BackgroundColor3 = Color3.fromRGB(70, 130, 180)
+playButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+playButton.Font = Enum.Font.SourceSansBold
+playButton.TextScaled = true
+playButton.Parent = mainFrame
+
+playButton.MouseButton1Click:Connect(function()
+    local soundID = soundIdBox.Text
+    if soundID and soundID ~= "" then
+        local args = {
+            [1] = "rbxassetid://" .. soundID,
+            [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("PlaySoundRemote"):InvokeServer(unpack(args))
+    end
+end)
