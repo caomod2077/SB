@@ -1,0 +1,6 @@
+script 
+local args = {
+    [1] = "sword"
+}
+
+game:GetService("ReplicatedStorage").Slicer:FireServer(unpack(args))
