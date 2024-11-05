@@ -1,0 +1,68 @@
+function CreateSlapAura()
+    local slapAuraScript = game:HttpGet("https://raw.githubusercontent.com/Caomod7777/sb/refs/heads/main/slapauratest")
+    loadstring(slapAuraScript)()
+
+    if game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("SlapUi") then
+        game.Players.LocalPlayer.PlayerGui:FindFirstChild("SlapUi"):Destroy()
+    end
+
+    local ScreenGui = Instance.new("ScreenGui")
+    ScreenGui.Name = "SlapUi"
+    ScreenGui.ResetOnSpawn = false
+    ScreenGui.Parent = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+
+    local SlapButton = Instance.new("Button", ScreenGui)
+    SlapButton.Size = UDim2.new(0.1, 0, 0.1, 0)
+    SlapButton.Position = UDim2.new(0.8, 0, 0.1, 0)
+    SlapButton.AnchorPoint = Vector2.new(0.5, 0.5)
+    SlapButton.BackgroundColor3 = Color3.new(1, 0, 0)
+    SlapButton.BackgroundTransparency = 0
+    SlapButton.Active = true
+    SlapButton.Draggable = true
+    
+    local TextLabel = Instance.new("TextLabel", SlapButton)
+    TextLabel.Size = UDim2.new(1, 0, 1, 0)
+    TextLabel.Text = "Slap Aura"
+    TextLabel.TextColor3 = Color3.new(1, 1, 1)
+    TextLabel.BackgroundTransparency = 1
+    TextLabel.TextScaled = true
+
+    local Corner = Instance.new("UICorner", SlapButton)
+    Corner.CornerRadius = UDim.new(0, 6)
+    
+    local Stroke = Instance.new("UIStroke", SlapButton)
+    Stroke.Color = Color3.new(0, 0, 0)
+    Stroke.Transparency = 0.2
+    Stroke.Thickness = 3
+    
+    local SlapAura = false
+    local lastClickTime = 0
+    local SlapAuraCooldown = 0.5
+    local Range = 20
+    
+    SlapButton.MouseButton1Click:Connect(function()
+        if SlapAura then return end
+        if tick() - lastClickTime < SlapAuraCooldown then
+            return
+        end
+        
+        SlapAura = true
+        
+        for _, v in pairs(game.Players:GetChildren()) do
+            if v ~= game.Players.LocalPlayer and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+                if v.Character:FindFirstChild("entered") and not v.Character:FindFirstChild("rock") then
+                    local Magnitude = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character.HumanoidRootPart.Position).Magnitude
+                    if Magnitude <= Range then
+                        game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Slap, game.Players.LocalPlayer.Character.Humanoid):Play()
+                        gloveHits[game.Players.LocalPlayer.leaderstats.Glove.Value]:FireServer(v.Character.HumanoidRootPart, true)
+                    end
+                end
+            end
+        end
+
+        lastClickTime = tick()
+        SlapAura = false
+    end)
+end
+
+CreateSlapAura()
