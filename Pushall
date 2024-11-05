@@ -1,0 +1,70 @@
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+local button = Instance.new("TextButton")
+
+_G.AntiKick = true
+
+screenGui.Name = "Pushall"
+screenGui.Parent = player:WaitForChild("PlayerGui")
+
+button.Name = "PushAllButton"
+button.Size = UDim2.new(0.3, 0, 0.2, 0)
+button.Position = UDim2.new(0.35, 0, 0.1, 0)
+button.BackgroundColor3 = Color3.new(0, 0, 0)
+button.BorderSizePixel = 5
+button.BorderColor3 = Color3.new(1, 1, 1)
+button.Text = "Push All"
+button.TextColor3 = Color3.new(1, 1, 1)
+button.Font = Enum.Font.Code
+button.TextSize = 20
+button.Parent = screenGui
+
+button.Active = true
+button.Draggable = true
+screenGui.ResetOnSpawn = false
+
+local isSpinning = false
+
+button.MouseButton1Click:Connect(function()
+    if not isSpinning then
+        isSpinning = true
+        local character = player.Character or player.CharacterAdded:Wait()
+        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+        coroutine.wrap(function()
+            while isSpinning do
+                if character and character:FindFirstChild("HumanoidRootPart") then
+                    humanoidRootPart.CFrame = humanoidRootPart.CFrame * CFrame.Angles(0, math.rad(30), 0)
+                end
+                wait(0.01)
+            end
+        end)()
+
+        fireclickdetector(game.Workspace.Lobby["Pusher"].ClickDetector)
+        humanoidRootPart.CFrame = game.Workspace.Origo.CFrame * CFrame.new(0, -5, 0)
+
+        coroutine.wrap(function()
+            for i = 1, 500 do
+                game:GetService("ReplicatedStorage").PusherWall:FireServer()
+                task.wait(0)
+            end
+        end)()
+
+        wait(1,15)
+        fireclickdetector(game.Workspace.Lobby["Default"].ClickDetector)
+
+        isSpinning = false
+    end
+end)
+
+coroutine.wrap(function()
+    while _G.AntiKick do
+        for _, v in pairs(game.CoreGui.RobloxPromptGui.promptOverlay:GetDescendants()) do
+            if v.Name == "ErrorPrompt" then
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, game.JobId, player)
+                break
+            end
+        end
+        task.wait(1)
+    end
+end)()
