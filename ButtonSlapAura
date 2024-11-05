@@ -11,7 +11,7 @@ function CreateSlapAura()
     ScreenGui.ResetOnSpawn = false
     ScreenGui.Parent = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
 
-    local SlapButton = Instance.new("Button", ScreenGui)
+    local SlapButton = Instance.new("ImageButton", ScreenGui)
     SlapButton.Size = UDim2.new(0.1, 0, 0.1, 0)
     SlapButton.Position = UDim2.new(0.8, 0, 0.1, 0)
     SlapButton.AnchorPoint = Vector2.new(0.5, 0.5)
