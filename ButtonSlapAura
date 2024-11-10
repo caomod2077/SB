@@ -12,7 +12,7 @@ function CreateSlapAura()
     ScreenGui.Parent = game.Players.LocalPlayer:FindFirstChild("PlayerGui")
 
     local SlapButton = Instance.new("ImageButton", ScreenGui)
-    SlapButton.Size = UDim2.new(0.08, 0, 0.15, 0)  -- Chiều rộng là 0.08 và chiều cao là 0.15
+    SlapButton.Size = UDim2.new(0.1, 0, 0.15, 0)
     SlapButton.Position = UDim2.new(0.85, 0, 0.15, 0)
     SlapButton.AnchorPoint = Vector2.new(0.5, 0.5)
     SlapButton.BackgroundColor3 = Color3.new(1, 0, 0)
