@@ -1,0 +1,176 @@
+--bypass anti exploit Make By Donjosx(Subscribe Him)
+
+local Namecall
+Namecall = hookmetamethod(game, "__namecall", function(self, ...)
+   if getnamecallmethod() == "FireServer" and tostring(self) == "Ban" then
+       return
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "WalkSpeedChanged" then
+       return
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "AdminGUI" then
+       return
+   elseif getnamecallmethod() == "FireServer" and tostring(self) == "GRAB" then
+       return
+   end
+   return Namecall(self, ...)
+end)
+
+local Players = game:GetService("Players")
+local StarterPlayer = game:GetService("StarterPlayer")
+
+local function checkAndDestroyAntiMobileExploits()
+    local player = Players.LocalPlayer
+    local antiMobileExploits = StarterPlayer.StarterPlayerScripts:FindFirstChild("ClientAnticheat")
+
+    if antiMobileExploits and antiMobileExploits:FindFirstChild("AntiMobileExploits") then
+        antiMobileExploits.AntiMobileExploits:Destroy()
+    end
+end
+
+checkAndDestroyAntiMobileExploits()
+
+-- screengui
+local player = game.Players.LocalPlayer
+local screenGui = Instance.new("ScreenGui")
+local mainFrame = Instance.new("Frame")
+local titleLabel = Instance.new("TextLabel")
+local toggleButton = Instance.new("TextButton")
+
+screenGui.Name = "LagDiamondGui"
+screenGui.Parent = player:WaitForChild("PlayerGui")
+screenGui.ResetOnSpawn = false
+
+mainFrame.Size = UDim2.new(0.4, 0, 0.4, 0)
+mainFrame.Position = UDim2.new(0.3, 0, 0.3, 0)
+mainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+mainFrame.BorderSizePixel = 5
+mainFrame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+mainFrame.Active = true
+mainFrame.Draggable = true
+mainFrame.Parent = screenGui
+
+titleLabel.Size = UDim2.new(1, 0, 0.2, 0)
+titleLabel.Position = UDim2.new(0, 0, 0, 0)
+titleLabel.BackgroundTransparency = 1
+titleLabel.Text = "Lag Gui"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.Font = Enum.Font.Code
+titleLabel.TextSize = 24
+titleLabel.Parent = mainFrame
+
+toggleButton.Size = UDim2.new(0.4, 0, 0.2, 0)
+toggleButton.Position = UDim2.new(0.3, 0, 0.75, 0)
+toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+toggleButton.Text = "OFF"
+toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+toggleButton.Font = Enum.Font.Code
+toggleButton.TextSize = 20
+toggleButton.Parent = mainFrame
+
+local option1 = Instance.new("TextButton")
+local option2 = Instance.new("TextButton")
+local option3 = Instance.new("TextButton")
+
+local function createOptionButton(button, position, text)
+    button.Size = UDim2.new(0.25, 0, 0.2, 0)
+    button.Position = position
+    button.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    button.Text = text
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.Font = Enum.Font.Code
+    button.TextSize = 18
+    button.Parent = mainFrame
+end
+
+createOptionButton(option1, UDim2.new(0.1, 0, 0.4, 0), "Quite Laggy")
+createOptionButton(option2, UDim2.new(0.4, 0, 0.4, 0), "Very Laggy")
+createOptionButton(option3, UDim2.new(0.7, 0, 0.4, 0), "Crash")
+
+local selectedOption = nil
+
+option1.MouseButton1Click:Connect(function()
+    selectedOption = "Quite Laggy"
+end)
+
+option2.MouseButton1Click:Connect(function()
+    selectedOption = "Very Laggy"
+end)
+
+option3.MouseButton1Click:Connect(function()
+    selectedOption = "Crash"
+end)
+
+local isRunning = false
+
+toggleButton.MouseButton1Click:Connect(function()
+    if not selectedOption then
+        return
+    end
+
+    isRunning = not isRunning
+    if isRunning then
+        toggleButton.Text = "ON"
+        toggleButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        
+--Quite laggy
+        if selectedOption == "Quite Laggy" then
+            _G.hui = true
+            fireclickdetector(workspace.Lobby.GloveStands["Diamond"].ClickDetector)
+
+            coroutine.wrap(function()
+                while _G.hui do
+                    if player.Character:FindFirstChild("rock") ~= nil then
+                        player.Character:FindFirstChild("rock"):Destroy()
+                    end
+
+                    for i = 1, 500 do
+                        game:GetService("ReplicatedStorage").Rockmode:FireServer()
+                    end
+                    
+                    task.wait(0.1)
+                end
+            end)()
+            
+--Very Laggy
+        elseif selectedOption == "Very Laggy" then
+            _G.hui = true
+            fireclickdetector(workspace.Lobby.GloveStands["Diamond"].ClickDetector)
+
+            coroutine.wrap(function()
+                while _G.hui do
+                    if player.Character:FindFirstChild("rock") ~= nil then
+                        player.Character:FindFirstChild("rock"):Destroy()
+                    end
+
+                    for i = 1, 1000 do
+                        game:GetService("ReplicatedStorage").Rockmode:FireServer()
+                    end
+                    
+                    task.wait(0.1)
+                end
+            end)()
+            
+--Crash
+        elseif selectedOption == "Crash" then
+            _G.hui = true
+            fireclickdetector(workspace.Lobby.GloveStands["Diamond"].ClickDetector)
+
+            coroutine.wrap(function()
+                while _G.hui do
+                    if player.Character:FindFirstChild("rock") ~= nil then
+                        player.Character:FindFirstChild("rock"):Destroy()
+                    end
+
+                    for i = 1, 10000 do
+                        game:GetService("ReplicatedStorage").Rockmode:FireServer()
+                    end
+                    
+                    task.wait(0.1)
+                end
+            end)()
+        end
+    else
+        toggleButton.Text = "OFF"
+        toggleButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+        _G.hui = false
+    end
+end)
