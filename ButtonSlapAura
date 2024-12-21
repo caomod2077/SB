@@ -1,5 +1,5 @@
 function CreateSlapAura()
-    local slapAuraScript = game:HttpGet("https://raw.githubusercontent.com/Caomod7777/sb/refs/heads/main/slapauratest")
+    local slapAuraScript = game:HttpGet("https://raw.githubusercontent.com/caomod2077/test-public/refs/heads/main/RemoteEvent%20hit")
     loadstring(slapAuraScript)()
 
     if game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("SlapUi") then
