@@ -1,0 +1,30 @@
+--open source 🗿
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local missileDestroyer = coroutine.create(function()
+    while true do
+        for _, object in pairs(workspace:GetDescendants()) do
+            if object.Name == "Missile" then
+                object:Destroy()
+            end
+        end
+        wait(0.001)
+    end
+end)
+
+coroutine.resume(missileDestroyer)
+
+wait(1)
+for i = 1, 90 do
+    local allPlayers = Players:GetPlayers()
+    for _, player in ipairs(allPlayers) do
+        if player and player.Character then
+            local args = {
+                [1] = Players.LocalPlayer.Character:FindFirstChild("Missile-Launcher"),
+                [2] = player.Character
+            }
+            ReplicatedStorage.Events.Ability:FireServer(unpack(args))
+        end
+    end
+end
