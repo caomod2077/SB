@@ -2,11 +2,10 @@
 
 --thông báo
 local StarterGui = game:GetService("StarterGui")
-
 StarterGui:SetCore("SendNotification", {
-    Title = "Loading script",
-    Text = "Done thx use my script",
-    Duration = 3
+    Title = "Notification",
+    Text = "The script has been patched :(",
+    Duration = 7
 })
 
 StarterGui:SetCore("SendNotification", {
